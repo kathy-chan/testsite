@@ -1,167 +1,105 @@
-# Hugo Serif Theme
+*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
-Serif is a modern business theme for Hugo. It contains content types for the archetypical business website. The theme is fully responsive, blazing fast and artfully illustrated.
+---
 
-[Live Demo](https://hugo-serif.netlify.app/) |
-[Zerostatic Themes](https://www.zerostatic.io/)
+# svelte app
 
-![Hugo Serif Theme screenshot](https://www.zerostatic.io/theme/hugo-serif/hugo-serif-screenshot.png)
+This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
 
-## Theme features
+To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
 
-### Content Types
-
-- Services (Markdown)
-- Team (Markdown)
-- Features (Data)
-
-### CSS
-
-- SCSS (Hugo Pipelines)
-- Responsive design
-- Bootstrap 4.4 grid and media queries only
-- Uncomment `@import 'bootstrap/bootstrap';` in `style.scss` to use the entire Bootstrap framework
-
-### Speed
-
-- 100/100 Google Lighthouse speed score
-- Under 50KB without images or 80KB with images and illustrations ⚡
-- No jQuery, only a tiny bit of vanilla Javascript for the mobile menu.
-
-### SEO
-
-- 100/100 Google Lighthouse SEO score
-- Google analytics configured in `config.toml`
-- Configure GID using env variable HUGO_GOOGLE_ANALYTICS_ID, compatible with Netlify.
-- Configure meta tags and OG meta tags for the homepage in `config.toml`
-- Override any meta tags on a per page basis
-- Semantic HTML document structure
-
-### Accessibility 
-
-- 100/100 Google Lighthouse accessibility score
-- Accessible colors, headings and link text (by design)
-- Attention has been paid to using correct contrast, font sizes etc
-- Attention has been paid to ensuring comfortable hit zones and link sizing on mobile
-
-### Menu
-
-- Responsive menu managed in `config.toml`
-- Animated hamburger menu on mobile
-
-### Content
-
-- Robust example content included
-- Royalty free illustrations included
-
-### Templating
-
-- No hardcoded content in the layouts
-- Plenty of examples of using `range` and `where` to loop over various sections/content types
-- Examples of `range` by Param
-- Examples of using data content _(data/contact.yaml and data/features.json)_
-- Example of passing .Site . (context) and custom variables to partials - see `layouts/page/contact.html` - `{{ partial "call.html" (dict "site" .Site "context" . "show_button" "false") }}`
-- Examples of injecting javascript files on a per page basis (see services/single.html)
-- Set `body` classes from individual layouts - useful for CSS styling.
-- Example of using Hugo custom `layout` for the contact page
-
-
-
-# Hugo Installation
-
-To use this theme you will need to have Hugo installed. If you don't already have Hugo installed please follow the official [installation guide](https://gohugo.io/getting-started/installing/)
-
-### Check Hugo version (Hugo Extended is required!)
-
-This theme uses [Hugo Pipes](https://gohugo.io/hugo-pipes/scss-sass/) to compile SCSS and minify assets. Please make sure you have the **Hugo Extended** version installed. If you are not using the extended version this theme will not work.
-
-To check your version of Hugo, run:
-
-```
-hugo version
+```bash
+npx degit sveltejs/template svelte-app
+cd svelte-app
 ```
 
-This will output the currently installed version of Hugo. Make sure you see `/extended` after the version number, for example `Hugo Static Site Generator v0.51/extended darwin/amd64 BuildDate: unknown` You do not need to use version v0.51 specifically, it just needs to have the `/extended` part
+*Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
 
-# Theme Installation
+## Get started
 
-Download, fork or  clone this repo, it's ready to go. 
+Install the dependencies...
 
-```
-hugo
-```
-
-```
-hugo server
+```bash
+cd svelte-app
+npm install
 ```
 
-# Deployment
+...then start [Rollup](https://rollupjs.org):
 
-## Stackbit
-
-Use Stackbit to deploy this theme and connect any headless CMS _(Forestry, NetlifyCMS, Sanity, Contentful, DatoCMS)_ - It's actually really amazing. This theme contains a valid and tested `stackbit.yaml`
-
-[![Create with Stackbit](https://assets.stackbit.com/badge/create-with-stackbit.svg)](https://app.stackbit.com/create?theme=https://github.com/zerostaticthemes/hugo-serif-theme)
-
-## Netlify
-
-Use Netlify to deploy this theme. This theme contains a valid and tested `netlify.toml` - Feel free to use the 1-click deploy below.
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/zerostaticthemes/hugo-serif-theme)
-
-# Configuring Theme
-
-Copy your Google Analytics id into the `config.toml` - Also supports Google Tag Manager.
-
-### Google Analytics
-```
-// config.toml
-[params]
-  google_analytics_id = ""
-  google_tag_manager_id = ""
-```
- 
-### Homepage meta tags
-
-Often a homepage requires special meta tags such as a meta description or og meta data for twitter, facebook etc. You can configure these values in the `config.toml`
-
-```
-// config.toml
-  [params.homepage_meta_tags]
-    meta_description = "a description of your website."
-    meta_og_title = "My Theme"
-    meta_og_type = "website"
-    meta_og_url = "https://www.mywebsite.com"
-    meta_og_image = "https://www.mywebsite.com/images/tn.png"
-    meta_og_description = "a description of your website."
-    meta_twitter_card = "summary"
-    meta_twitter_site = "@mytwitterhandle"
-    meta_twitter_creator = "@mytwitterhandle"
+```bash
+npm run dev
 ```
 
-### Override meta tags on a per layout basis
+Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
 
-You can set meta tags on a per template basis using a block. For example, you might want to write a custom meta description for the `/services` page. You can insert any valid HTML meta data inside the `{{ define "meta_tags }}` block at the top of a template.
+By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
 
-```
-// layouts/services/list.html
-...
+If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
 
-{{ define "meta_tags" }}
-    <meta name="description" content="We offer a variety of services in the finance industry" />
-{{ end }}
+## Building and running in production mode
 
-{{ define main }}
-...
+To create an optimised version of the app:
+
+```bash
+npm run build
 ```
 
-## Credits
-
-- Beautiful royalty free Illustrations by Icons8 - https://icons8.com/illustrations/style--pixeltrue
+You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
 
 
-## License
+## Single-page app mode
 
-This theme is open source under the MIT license. If you fork or copy this theme you must leave me as the original author in the LICENSE file (on line 3 where I am listed as the author). Really, I just don't want people copying this theme and then saying it's their theme, because I put a lot of work into my themes, thanks!
+By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
 
+If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
+
+```js
+"start": "sirv public --single"
+```
+
+## Using TypeScript
+
+This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
+
+```bash
+node scripts/setupTypeScript.js
+```
+
+Or remove the script via:
+
+```bash
+rm scripts/setupTypeScript.js
+```
+
+## Deploying to the web
+
+### With [Vercel](https://vercel.com)
+
+Install `vercel` if you haven't already:
+
+```bash
+npm install -g vercel
+```
+
+Then, from within your project folder:
+
+```bash
+cd public
+vercel deploy --name my-project
+```
+
+### With [surge](https://surge.sh/)
+
+Install `surge` if you haven't already:
+
+```bash
+npm install -g surge
+```
+
+Then, from within your project folder:
+
+```bash
+npm run build
+surge public my-project.surge.sh
+```
